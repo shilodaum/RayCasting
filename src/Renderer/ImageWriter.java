@@ -20,8 +20,14 @@ public class ImageWriter {
 
     private String _imageName;
 
-    // ***************** Constructors ********************** //
-
+    /**
+     * ctor with values
+     * @param imageName the image's name
+     * @param width the image's width
+     * @param height the image's height
+     * @param Ny number of pixels in x
+     * @param Nx number of pixels in t
+     */
     public ImageWriter(String imageName, int width, int height, int Ny, int Nx) {
 
         _Nx = Nx;
@@ -37,6 +43,10 @@ public class ImageWriter {
         ;
     }
 
+    /**
+     * cpy ctor
+     * @param imageWriter other image writer
+     */
     public ImageWriter(ImageWriter imageWriter) {
         _Nx = imageWriter._Nx;
         _Ny = imageWriter._Ny;
@@ -51,8 +61,7 @@ public class ImageWriter {
         ;
     }
 
-    // ***************** Getters/Setters ********************** //
-
+    /***************** Getters/Setters **********************/
     public int getWidth() {
         return _imageWidth;
     }
@@ -77,8 +86,9 @@ public class ImageWriter {
         this._Nx = _Nx;
     }
 
-    // ***************** Operations ******************** //
-
+    /**
+     * write data to image
+     */
     public void writeToimage() {
 
         File ouFile = new File(PROJECT_PATH + "/" + _imageName + ".jpg");
@@ -90,6 +100,14 @@ public class ImageWriter {
         }
     }
 
+    /**
+     * write a single pixel into the buffered image
+     * @param xIndex the x index
+     * @param yIndex the y index
+     * @param r red value
+     * @param g green value
+     * @param b blue value
+     */
     public void writePixel(int xIndex, int yIndex, int r, int g, int b) {
 
         int rgb = new Color(r, g, b).getRGB();
@@ -97,6 +115,12 @@ public class ImageWriter {
 
     }
 
+    /**
+     * write a single pixel into the buffered image
+     * @param xIndex the x index
+     * @param yIndex the y index
+     * @param rgbArray r,g,b values
+     */
     public void writePixel(int xIndex, int yIndex, int[] rgbArray) {
 
         int rgb = new Color(rgbArray[0], rgbArray[1], rgbArray[2]).getRGB();
@@ -104,6 +128,12 @@ public class ImageWriter {
 
     }
 
+    /**
+     * write a single pixel into the buffered image
+     * @param xIndex the x index
+     * @param yIndex the y index
+     * @param color the color
+     */
     public void writePixel(int xIndex, int yIndex, Color color) {
         _image.setRGB(xIndex, yIndex, color.getRGB());
     }

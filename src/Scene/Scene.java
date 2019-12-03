@@ -11,8 +11,19 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-//check aliasing
+/**
+ * represents a scene
+ */
 public class Scene {
+    /**
+     * the scene name
+     * the background color
+     * the ambient light
+     * list of geometries
+     * the camera
+     * screen distance
+     * a list of light sources
+     */
     String sceneName;
     Color bg;//background color
     AmbientLight al;
@@ -21,7 +32,16 @@ public class Scene {
     double dis;//screen distance
     List<Light> lightSources;
 
-
+    /**
+     * ctor with parameters
+     * @param sceneName the scene name
+     * @param bg background color
+     * @param al the ambient light
+     * @param gl the geometry list
+     * @param camera the camera
+     * @param dis scrren distance
+     * @param _lightSources list of light sources
+     */
     public Scene(String sceneName, Color bg, AmbientLight al, ArrayList<Geometry> gl, Camera camera, double dis,List<Light> _lightSources) {
         this.sceneName = sceneName;
         this.bg = bg;
@@ -32,6 +52,10 @@ public class Scene {
         this.lightSources=_lightSources;
     }
 
+    /**
+     * cpy ctor
+     * @param s other scene
+     */
     public Scene(Scene s) {
         this.sceneName = s.sceneName;
         this.bg =s.bg;
@@ -42,6 +66,9 @@ public class Scene {
         this.lightSources=new ArrayList<Light>(s.lightSources);
     }
 
+    /**
+     * default ctor
+     */
     public Scene() {
         this.sceneName = "scene";
         this.bg = new Color(0,0,0);
@@ -51,7 +78,7 @@ public class Scene {
         this.al=new AmbientLight();
         this.lightSources=new ArrayList<Light>( );
     }
-
+/***********getters/setters***********/
     public String getSceneName() {
         return sceneName;
     }
@@ -104,19 +131,34 @@ public class Scene {
         this.al = new AmbientLight(al);
     }
 
-    public Iterator<Geometry> getGeometriesIterator()
-    {
-        return gl.iterator();
-
-    }
-    public void addLight(Light _l){
-        lightSources.add(_l);
-    }
-    public Iterator<Light> GetLightItarator(){
-        return lightSources.iterator();
-    }
-
     public void setScreenDistance(int i) {
         setDis(i);
     }
+
+    /**
+     * get iterator
+     * @return iterator for geometries
+     */
+    public Iterator<Geometry> getGeometriesIterator() {
+        return gl.iterator();
+
+    }
+
+    /**
+     * add light to light sources list
+     * @param _l new light source
+     */
+    public void addLight(Light _l){
+        lightSources.add(_l);
+    }
+
+    /**
+     * get iterator for light sources
+     * @return iterator for light sources
+     */
+    public Iterator<Light> GetLightIterator(){
+        return lightSources.iterator();
+    }
+
+
 }
