@@ -4,19 +4,39 @@ import java.util.Objects;
 
 import static java.lang.StrictMath.sqrt;
 
+/**
+ * two dimensional point
+ */
 public class Point2D {
+    /**
+     * two coordinates
+     */
     protected Coordinate x;
     protected Coordinate y;
 
-    //ctors
+    /**
+     * default ctor
+     */
     public Point2D() {
         setX(Coordinate.ZERO);
         setY(Coordinate.ZERO);
     }
+
+    /**
+     * ctor with 2 coordinates
+     * @param x x coordinate
+     * @param y y coordinate
+     */
     public Point2D(Coordinate x, Coordinate y) {
         this.setX(x);
         this.setY(y);
     }
+
+    /**
+     * ctor with 2 values
+     * @param x x value
+     * @param y y value
+     */
     public Point2D(double x, double y){
         this.setX(new Coordinate(x));
         this.setY(new Coordinate(y));}
@@ -25,7 +45,7 @@ public class Point2D {
         this.setY(other.getY());
     }
 
-    //get
+    /*********getters/setters*********/
     public Coordinate getX() {
         return new Coordinate(x.get());
     }
@@ -40,6 +60,11 @@ public class Point2D {
         this.y = new Coordinate(y.get());
     }
 
+    /**
+     * compare to other object
+     * @param o other object
+     * @return true if equals
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -55,8 +80,12 @@ public class Point2D {
         return Objects.hash(getX(), getY());
     }
 
-    public double distance(Point2D other)
-    {
+    /**
+     * distance between 2 points
+     * @param other other point
+     * @return the distance between 2 points
+     */
+    public double distance(Point2D other) {
         double xx = Util.uscale(
                 Util.usubtract(other.getX().get(), getX().get()),
                 Util.usubtract(other.getX().get(), getX().get()));
@@ -67,6 +96,10 @@ public class Point2D {
         return  sqrt(xx+yy);
     }
 
+    /**
+     * convert to string
+     * @return string of values
+     */
     @Override
     public String toString() {
         //return "(" + _x.getX() + " , " + _y.getY() + ")" ;
